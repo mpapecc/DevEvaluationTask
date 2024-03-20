@@ -1,0 +1,16 @@
+<div class="contact-list">
+    <div class="title">
+        {{listTitle}}
+    </div>
+    <div class="contact-list_list">
+        <div class="empty-list" *ngIf="contactList.length===0">
+            No contacts in {{listTitle}}
+        </div>
+        <app-contact 
+            class="contact-list_contact"
+            *ngFor="let contact of contactList"
+            [contact]="contact">
+        </app-contact>
+    </div>
+</div>
+

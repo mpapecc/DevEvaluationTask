@@ -1,0 +1,7 @@
+.add-contact-page{
+    padding: 10px;
+    .add-contact-page_contact-form{
+        display: flex;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,11 @@
+.sidenav{
+
+    .tags{
+        display: flex;
+        flex-wrap: wrap;
+
+        .sidenav_tag{
+            margin: 2px;
+        }
+    }
+}

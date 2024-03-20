@@ -1,0 +1,114 @@
+<div class="contact-form">
+
+    <div class="contact-tags-list">
+        <div class="used-tag-list">
+            <app-tag 
+                *ngFor="let contactTag of contact.contactTags" 
+                (click)="removeTagFromContact(contactTag.tag.id)" 
+                [text]="contactTag.tag.value"
+                [isActive]=true>
+            </app-tag> 
+
+            <button class="btn btn-primary" (click)="changeTagListVisibility()">{{(showTagList? "Done":"+ Add" )}}</button>
+        </div>
+
+        <div *ngIf="isInputVisible">
+            <div class="mb-3" style="display: flex; flex-direction:row">
+                <input type="text" class="form-control" (ngModelChange)="newTagInputChange($event)" placeholder="New Tag" id="floatingInput" [(ngModel)]="newTagValue" >
+                <button  type="button" (click)="postNewTag()" class="btn btn-success">+</button>
+                <button  type="button" (click)="changeNewTagInputVisibility()" class="btn btn-danger">X</button>
+            </div>
+        </div>
+    
+        <div class="mb-3">
+            <div *ngIf="isTagValueEmpty && isInputVisible" class="alert alert-danger" role="alert">Tag value can not be empty</div>
+        </div>
+
+        <div *ngIf="showTagList" class="unused-tag-list">
+            <app-tag 
+                    *ngFor="let tag of allUnusedTags" 
+                    (click)="addTagToContact(tag.id)"  
+                    [text]="tag.value">
+            </app-tag>
+        </div>
+
+    </div>
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" >
+
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" [ngClass]="{'is-invalid': !contactForm.controls.firstName.valid && showValidation}" id="floatingInput" placeholder="First Name" formControlName="firstName" >
+            <label for="floatingInput">First Name</label>
+            <div class="invalid-feedback">
+                Please enter First Name
+            </div>
+        </div>
+    
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" [ngClass]="{'is-invalid': !contactForm.controls.lastName.valid && showValidation}" id="floatingInput"  placeholder="Last Name" formControlName="lastName">
+            <label for="floatingInput">Last Name</label>
+            <div class="invalid-feedback">
+                Please enter Last Name
+            </div>
+        </div>
+    
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" [ngClass]="{'is-invalid': !contactForm.controls.address.valid && showValidation}" id="floatingInput" placeholder="Address" formControlName="address">
+            <label for="floatingInput">Address</label>
+            <div class="invalid-feedback">
+                Please enter Address
+            </div>
+        </div>
+    
+        <div class="mb-3">
+            <input class="form-check-input" type="checkbox" value="" id="bookmark" formControlName="isBookmarked">
+            <label class="form-check-label" for="bookmark">Bookmark Contact</label>      
+        </div>
+    
+    
+        <div formArrayName="emails">
+
+            <div *ngFor="let item of emails.controls;index as i">
+                <div class="input-group form-floating mb-3" style="display: flex; flex-direction:row">
+                    <input type="text" class="form-control" [ngClass]="{'is-invalid': !emails.controls[i].valid && showValidation}" id="floatingInput" [placeholder]="placeholder(i+1,'Email')" [formControlName]="i">
+                    <button  *ngIf="i>0" class="btn btn-outline-danger" (click)="removeControl('emails',i)" type="button" id="button-addon1">X</button>
+
+                    <div class="invalid-feedback">
+                        Please enter valid email
+                    </div>
+                    <label  for="floatingInput">Email {{i>0 ? i+1 : ''}}</label>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <button type="button" class="btn btn-outline-primary" (click)="addEmail()"> Add New Email</button>
+            </div>
+            
+        </div>
+    
+        <div formArrayName="numbers">
+        
+            <div *ngFor="let item of numbers.controls;index as i">
+                <div class="input-group form-floating mb-3" >
+                    <input aria-describedby="button-addon1" type="text" class="form-control" [ngClass]="{'is-invalid': !numbers.controls[i].valid && showValidation}" id="floatingInput" [placeholder]="placeholder(i+1,'Number')" [formControlName]=i>
+                    <button  *ngIf="i>0" class="btn btn-outline-danger" (click)="removeControl('numbers',i)" type="button" id="button-addon1">X</button>
+                    <div class="invalid-feedback">
+                        Please enter valid number
+                    </div>
+                    <label  for="floatingInput">Number {{i>0 ? i+1 : ''}}</label>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <button type="button" class="btn btn-outline-primary" (click)="addNumber()"> Add New Number</button>
+            </div>
+
+        </div>
+    
+        <div class="form-buttons">
+            <div class="mb-3">
+                <button type="submit"   class="btn btn-primary" >Save Contact</button>
+            </div>
+        </div>
+    </form>
+</div>

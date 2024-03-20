@@ -1,0 +1,51 @@
+<div class="sidenav">
+    
+    <div class="mb-3">
+        <a [routerLink]="['/add-contact']" >
+            <button type="button" style="width: 100%;" class="btn btn-success">+ Add Contact</button>
+        </a>
+    </div>
+
+    <div class="contact-search-form">
+        
+        <form [formGroup]="contactService.contactSearchForm">
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="First Name" formControlName="firstName" >
+              </div>
+        
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName">
+            </div>
+        </form>
+
+    </div>
+
+    <div class="tags">
+        <app-tag 
+            *ngFor="let tag of tagService.allTags"
+            class="sidenav_tag" (click)="selectTag(tag)" 
+            [text]="tag.value"
+            [isActive]="tags.value.includes(tag.id)">
+        </app-tag>
+
+        <app-tag 
+            class="sidenav_tag" 
+            text="+ Add Tag" 
+            [isActive]="true"
+            (click)="changeNewTagInputVisibility()">
+        </app-tag>
+
+    </div>
+
+    <div *ngIf="isInputVisible">
+        <div class="mb-3" style="display: flex; flex-direction:row">
+            <input type="text" class="form-control" (ngModelChange)="newTagInputChange($event)" placeholder="New Tag" id="floatingInput" [(ngModel)]="newTagValue" >
+            <button  type="button" (click)="postNewTag()" class="btn btn-success">+</button>
+            <button  type="button" (click)="changeNewTagInputVisibility()" class="btn btn-danger">X</button>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <div *ngIf="isTagValueEmpty && isInputVisible" class="alert alert-danger" role="alert">Tag value can not be empty</div>
+    </div>
+</div>

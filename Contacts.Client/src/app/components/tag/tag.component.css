@@ -1,0 +1,12 @@
+.tag{
+    box-sizing: border-box;
+    padding: 2px;
+    border: 2px #7BD9F5 solid;
+    border-radius: 5px;
+    width: max-content;
+    cursor: pointer;
+
+    &.active{
+        background-color: #B8E4F4;
+    }
+}

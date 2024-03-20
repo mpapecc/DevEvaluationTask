@@ -1,0 +1,18 @@
+.background{
+    height: 100dvh;
+    box-sizing: border-box;
+    padding: 20px 40px;
+    background-color:#dbdfe8;
+
+    .main-content{
+        padding: 10px;
+        box-sizing: border-box;
+        height: 100%;
+        border-radius: 20px;
+        background-color: #f3f4f6;
+        overflow-y: auto;
+        .contact-form{
+            width: 400px;
+        }
+    }
+}

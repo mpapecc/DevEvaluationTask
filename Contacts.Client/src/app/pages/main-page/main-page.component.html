@@ -1,0 +1,26 @@
+ <div class="main-page" style="position: relative;">
+
+  <div class="main-page_sidenav">
+    <app-sidenav (contactSearchEvent)="searchContacts($event)"></app-sidenav>
+  </div>
+ 
+  <div class="main-page_lists">
+    <app-contact-list 
+      listTitle="Bookmarked"
+      [contactList]="contactService.bookmarkedContacts">
+   </app-contact-list>
+
+   <app-contact-list 
+      listTitle="All Contacts"
+      [contactList]="contactService.allContacts">
+   </app-contact-list>
+   
+  </div>
+
+  <div style="width: 50px;" class="clearfix">
+    <div *ngIf="contactService.isLoading" class="spinner-border float-end" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+ </div>

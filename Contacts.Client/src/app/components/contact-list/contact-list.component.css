@@ -1,0 +1,29 @@
+
+
+.contact-list{
+    width: 400px;
+
+    .title{
+        display: flex;
+        justify-content: center;
+        margin: 10px 0;
+        border-bottom: 1px solid #dbdfe8
+    }
+
+    .contact-list_list{
+        overflow-y: auto;
+        height: 750px;
+        .empty-list{
+            height: 40px;
+            border: 1px solid #dbdfe8;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 17px;
+        }
+    }
+    .contact-list_contact{
+        margin: 5px;
+    }
+}

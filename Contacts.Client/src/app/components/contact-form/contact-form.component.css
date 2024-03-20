@@ -1,0 +1,21 @@
+.form-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.contact-tags-list{
+    border: 1px solid #dbdfe8;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.used-tag-list,.unused-tag-list{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}

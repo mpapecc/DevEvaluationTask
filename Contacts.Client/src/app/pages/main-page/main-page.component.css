@@ -1,0 +1,26 @@
+.main-page{
+    display: flex;
+
+
+    .main-page_sidenav{
+        width: 20%;
+    }
+
+    .main-page_lists{
+        width: 80%;
+        display: flex;
+        justify-content: space-evenly;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    .main-page_lists{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .main-page_sidenav{
+        display: none;
+    }
+  }
