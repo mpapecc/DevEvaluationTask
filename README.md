@@ -13,3 +13,5 @@
 	
 	For creating database run Update-Database.
 	To run project open solution in Visual Studion and click Start.
+
+ This is evaluation task for Junior Software Engineer position at HR Cloud
